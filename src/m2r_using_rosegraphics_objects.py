@@ -141,7 +141,7 @@ def example3():
     radius = 50
     circle = rg.Circle(center_point, radius)
     circle.fill_color = 'green'
-    circle.outline_thickness = 10
+    circle.outline_thickness = 5
     circle.attach_to(window)
 
 
