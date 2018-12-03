@@ -10,54 +10,54 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
 
 ###############################################################################
 #
-# TODO: 2.
+# done: 2.
 #   RUN this program.  Then answer the following,
 #     GETTING HELP AS NEED! (Ask questions!!!)
 #
 #     a. For the RoseGraphics coordinate system:
 #
 #        -- Where is the (0, 0) point on the screen?
-#              WRITE_YOUR_ANSWER_HERE,_REPLACING_THIS
+#              (0,0) is the upper left corner of the screen
 #
 #        -- In what direction on the screen
 #           does the positive X-axis point?
-#              WRITE_YOUR_ANSWER_HERE,_REPLACING_THIS
+#             Positive x goes to the right on the screen
 #
 #        -- In what direction on the screen
 #           does the positive Y-axis point?
-#              WRITE_YOUR_ANSWER_HERE,_REPLACING_THIS
+#              positive y goes down
 #
 #     b. Write a line of code that constructs a RoseWindow object:
-#            WRITE_YOUR_ANSWER_HERE,_REPLACING_THIS
+#             window = rg.RoseWindow(500, 300, 'Example 1: An empty window')
 #
 #     c. What is the default height of a RoseWindow?
 #        (Use the HOVER trick to determine the answer to this question.)
-#            WRITE_YOUR_ANSWER_HERE,_REPLACING_THIS
+#            the default height is 300
 #
 #     d. Write a line of code that construct a RoseWindow object
 #        whose height is 100:  (Use the HOVER trick to figure it out)
-#            WRITE_YOUR_ANSWER_HERE,_REPLACING_THIS
+#            window = rg.RoseWindow(500, 100)
 #
 #     e. Use the DOT trick to answer the following:
 #
 #          -- Write the names of two types of graphics objects that
 #             you can construct OTHER than Circle and Point:
-#                WRITE_YOUR_ANSWER_HERE,_REPLACING_THIS
+#                Polygon, Ellipse
 #
 #          -- Write the names of three METHODs that Circle objects have:
-#                WRITE_YOUR_ANSWER_HERE,_REPLACING_THIS
+#                clone, detach_from, move_by
 #
 #          -- Write the names of three INSTANCE VARIABLEs that Circle
 #             objects have:
-#                WRITE_YOUR_ANSWER_HERE,_REPLACING_THIS
+#                fill_color , outline_color, outline_thickness
 #
 #     f. What does a RoseWindow RENDER method do?
-#            WRITE_YOUR_ANSWER_HERE,_REPLACING_THIS
+#           when you get to render, the program waits the number of seconds specified before going ot the next line
 #
 #     g. When is a RoseWindow close_on_mouse_click method call
 #        necessary?  Why?
-#            WRITE_YOUR_ANSWER_HERE,_REPLACING_THIS
-#
+#            If you don't close the window, then it stays open
+#            and clutters the screen
 #   ASK QUESTIONS ** NOW ** if you do not understand how the
 #     RoseGraphics graphics system works.
 #
@@ -84,8 +84,9 @@ def main():
 
 def example1():
     """ Displays an empty window. """
-    window = rg.RoseWindow(500, 300, 'Example 1: An empty window')
-    window.close_on_mouse_click()
+
+    window = rg.RoseWindow(500, 100, 'Example 1: An empty window')
+#    window.close_on_mouse_click()
 
 
 def example2():
@@ -99,8 +100,11 @@ def example2():
     # Construct some rg.Point objects.
     # Note: the y-axis goes DOWN from the TOP.
     # ------------------------------------------------------------------
-    point1 = rg.Point(100, 150)
+    point1 = rg.Point(10, 10)
     point2 = rg.Point(200, 50)
+    point3 = rg.Point(0,0)
+    pict = rg.Circle(point2,40)
+
 
     # ------------------------------------------------------------------
     # A RoseGraphics object is not associated with a window,
@@ -108,13 +112,14 @@ def example2():
     # ------------------------------------------------------------------
     point1.attach_to(window)
     point2.attach_to(window)
-
+    point3.attach_to(window)
+    pict.attach_to(window)
     # ------------------------------------------------------------------
     # And they still are not DRAWN until you RENDER the window.
     # That will draw ALL the objects on the window.
     # This two-step approach is important for animation.
     # ------------------------------------------------------------------
-    window.render()
+    window.render(10)
 
     window.close_on_mouse_click()
 
@@ -136,7 +141,9 @@ def example3():
     radius = 50
     circle = rg.Circle(center_point, radius)
     circle.fill_color = 'green'
+    circle.outline_thickness = 10
     circle.attach_to(window)
+
 
     # ------------------------------------------------------------------
     # Rectangle: needs two opposite corners.
